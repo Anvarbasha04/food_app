@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🍔 FoodApp</div>
+    <div class="search-box">
+        <input type="text" placeholder="Search food...">
+    </div>
+</div>
+
+<!-- CATEGORY -->
+<div class="categories">
+    <div class="cat">🍔 Burger</div>
+    <div class="cat">🍕 Pizza</div>
+    <div class="cat">🍗 Chicken</div>
+    <div class="cat">🥤 Drinks</div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+<div class="grid">
+
+{% for f in foods %}
+<div class="card">
+
+    <div class="card-wrapper">
+        <span class="badge">⭐ 4.3</span>
+        <span class="offer">30% OFF</span>
+        <img src="/static/images/{{f.img}}">
+    </div>
+
+    <div class="card-content">
+        <h3>{{f.name}}</h3>
+        <p class="price">₹ {{f.price}}</p>
+        <a href="/add/{{f.id}}" class="btn">Add to Cart</a>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+<a href="/cart" class="btn">🛒 View Cart</a>
+</div>
+
+</body>
+</html>

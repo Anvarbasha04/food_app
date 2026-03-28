@@ -1,0 +1,11 @@
+<div class="container">
+<h2>🛒 Your Cart</h2>
+
+{% for i in cart %}
+<p>{{i.name}} - ₹{{i.price}}</p>
+{% endfor %}
+
+<h3>Total: ₹{{total}}</h3>
+
+<a href="/payment" class="btn">Pay Now</a>
+</div>
