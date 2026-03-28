@@ -1,28 +1,16 @@
-from database import get_db
+from sqlalchemy import Column, Integer, String
+from database import Base
 
-def init_db():
-    db = get_db()
-    cur = db.cursor()
+class User(Base):
+    __tablename__ = "users"
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS users(
-        id INTEGER PRIMARY KEY,
-        username TEXT,
-        password TEXT
-    )""")
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
+    password = Column(String)
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS cart(
-        id INTEGER PRIMARY KEY,
-        username TEXT,
-        product_id INTEGER,
-        name TEXT,
-        price INTEGER
-    )""")
+class Cart(Base):
+    __tablename__ = "cart"
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS orders(
-        id INTEGER PRIMARY KEY,
-        username TEXT,
-        total INTEGER
-    )""")
-
-    db.commit()
-    db.close()
+    id = Column(Integer, primary_key=True)
+    food_name = Column(String)
+    price = Column(Integer)
