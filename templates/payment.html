@@ -1,8 +1,19 @@
-<div class="container">
-<h2>💳 Payment</h2>
-<p>Total: ₹{{total}}</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+</head>
+<body>
 
-<form method="post">
-<button class="btn">Confirm Payment</button>
-</form>
-</div>
+<h1>💳 Payment Page</h1>
+
+{% for item in cart %}
+<p>{{ item.name }} - ₹{{ item.price }}</p>
+{% endfor %}
+
+<h2>Total: ₹{{ total }}</h2>
+
+<button>Pay Now</button>
+
+</body>
+</html>

@@ -1,52 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Food App</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial; background:#f5f5f5; }
+        h1 { text-align:center; }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 10px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 150px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 8px;
+            background: green;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .cart {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">🍔 FoodApp</div>
-    <div class="search-box">
-        <input type="text" placeholder="Search food...">
-    </div>
-</div>
+<h1>🍽️ Food Menu</h1>
 
-<!-- CATEGORY -->
-<div class="categories">
-    <div class="cat">🍔 Burger</div>
-    <div class="cat">🍕 Pizza</div>
-    <div class="cat">🍗 Chicken</div>
-    <div class="cat">🥤 Drinks</div>
-</div>
-
-<!-- PRODUCTS -->
 <div class="container">
-<div class="grid">
-
-{% for f in foods %}
-<div class="card">
-
-    <div class="card-wrapper">
-        <span class="badge">⭐ 4.3</span>
-        <span class="offer">30% OFF</span>
-        <img src="/static/images/{{f.img}}">
+    {% for food in foods %}
+    <div class="card">
+        <img src="{{ food.image }}">
+        <h3>{{ food.name }}</h3>
+        <p>₹{{ food.price }}</p>
+        <a href="/add_to_cart/{{ food.id }}">
+            <button>Add to Cart</button>
+        </a>
     </div>
-
-    <div class="card-content">
-        <h3>{{f.name}}</h3>
-        <p class="price">₹ {{f.price}}</p>
-        <a href="/add/{{f.id}}" class="btn">Add to Cart</a>
-    </div>
-
-</div>
-{% endfor %}
-
+    {% endfor %}
 </div>
 
-<a href="/cart" class="btn">🛒 View Cart</a>
+<div class="cart">
+    <h2>🛒 Cart</h2>
+    {% for item in cart %}
+        <p>{{ item.name }} - ₹{{ item.price }}</p>
+    {% endfor %}
+    <a href="/payment"><button>Go to Payment</button></a>
 </div>
 
 </body>
